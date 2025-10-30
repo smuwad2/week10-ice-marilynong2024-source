@@ -35,7 +35,7 @@
         methods: {
             deletePost(id) {
                 // TODO: Complete the delete method
-                axios.get(`${this.baseUrl}/deletePosts`, {
+                axios.get(`${this.baseUrl}/deletePost`, {
                     params: {
                         id: id,
                     }

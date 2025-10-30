@@ -1,3 +1,9 @@
+<script setup>
+    // Import Task Tracker component
+    import taskTracker from './subcomponents/TaskTracker.vue'
+</script>
+
+
 <script>
     export default {
         data() {
@@ -14,7 +20,13 @@
                 this.deadline = ''
             },
             // TODO: Add a new method, to delete a task completed
+            deleteTask(idx) {
+                this.taskList.splice(idx, 1);
+            }
             
+        },
+        components: {
+            taskTracker
         }
     }
 
@@ -34,7 +46,17 @@
     <hr>
 
     <!-- TODO: Modify following code -->
-    <task-tracker ></task-tracker>
+    <div class="d-flex flex-wrap">
+        <task-tracker
+            v-for="(task, index) in taskList"
+            :task="task"
+            :idx="index"
+            :key="index"
+            @done="deleteTask"
+        ></task-tracker>
+        <!-- the left (ie :task, :idx) is the name of the prop expected by the child component
+             the right (ie task, index) is the value from the parent (ie task in v-for="(task, idx) in taskList")) -->
+    </div>
 
 </template>
 
